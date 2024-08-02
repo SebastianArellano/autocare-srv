@@ -1,0 +1,15 @@
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\Comun.dll.config
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\Comun.dll
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\Comun.pdb
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\AutoCareDB.dll
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\EntityFramework.dll
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\AutoCareDB.pdb
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\AutoCareDB.dll.config
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\EntityFramework.xml
+C:\Users\Sebas\source\repos\AutoCare\Comun\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Sebas\source\repos\AutoCare\Comun\obj\Release\Comun.csproj.AssemblyReference.cache
+C:\Users\Sebas\source\repos\AutoCare\Comun\obj\Release\Comun.csproj.CoreCompileInputs.cache
+C:\Users\Sebas\source\repos\AutoCare\Comun\obj\Release\Comun.csproj.CopyComplete
+C:\Users\Sebas\source\repos\AutoCare\Comun\obj\Release\Comun.dll
+C:\Users\Sebas\source\repos\AutoCare\Comun\obj\Release\Comun.pdb

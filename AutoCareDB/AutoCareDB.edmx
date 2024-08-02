@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AutoCareModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AutoCareModelStoreContainer">
+    <EntitySet Name="UsuarioSet" EntityType="AutoCareModel.Store.UsuarioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VehiculoSet" EntityType="AutoCareModel.Store.VehiculoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MantenimientoSet" EntityType="AutoCareModel.Store.MantenimientoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AlertaSet" EntityType="AutoCareModel.Store.AlertaSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UsuarioVehiculo" Association="AutoCareModel.Store.UsuarioVehiculo">
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+      <End Role="Vehiculo" EntitySet="VehiculoSet" />
+    </AssociationSet>
+    <AssociationSet Name="VehiculoMantenimiento" Association="AutoCareModel.Store.VehiculoMantenimiento">
+      <End Role="Vehiculo" EntitySet="VehiculoSet" />
+      <End Role="Mantenimiento" EntitySet="MantenimientoSet" />
+    </AssociationSet>
+    <AssociationSet Name="VehiculoAlerta" Association="AutoCareModel.Store.VehiculoAlerta">
+      <End Role="Vehiculo" EntitySet="VehiculoSet" />
+      <End Role="Alerta" EntitySet="AlertaSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UsuarioSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Contraseña" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehiculoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Marca" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Modelo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Año" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Kilometraje" Type="int" Nullable="false" />
+    <Property Name="Imagen" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UsuarioId" Type="int" Nullable="false" />
+    <Property Name="Observacion" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MantenimientoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoMantenimiento" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Costo" Type="decimal" Nullable="false" />
+    <Property Name="VehiculoId" Type="int" Nullable="false" />
+    <Property Name="Observacion" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Taller" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Horario" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AlertaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoAlerta" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaAlerta" Type="datetime" Nullable="false" />
+    <Property Name="Kilometraje" Type="int" Nullable="false" />
+    <Property Name="VehiculoId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UsuarioVehiculo">
+    <End Role="Usuario" Type="AutoCareModel.Store.UsuarioSet" Multiplicity="1" />
+    <End Role="Vehiculo" Type="AutoCareModel.Store.VehiculoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vehiculo">
+        <PropertyRef Name="UsuarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VehiculoMantenimiento">
+    <End Role="Vehiculo" Type="AutoCareModel.Store.VehiculoSet" Multiplicity="1" />
+    <End Role="Mantenimiento" Type="AutoCareModel.Store.MantenimientoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mantenimiento">
+        <PropertyRef Name="VehiculoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VehiculoAlerta">
+    <End Role="Vehiculo" Type="AutoCareModel.Store.VehiculoSet" Multiplicity="1" />
+    <End Role="Alerta" Type="AutoCareModel.Store.AlertaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehiculo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alerta">
+        <PropertyRef Name="VehiculoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AutoCareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AutoCareEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="UsuarioSet" EntityType="AutoCareModel.Usuario" />
+          <EntitySet Name="VehiculoSet" EntityType="AutoCareModel.Vehiculo" />
+          <EntitySet Name="MantenimientoSet" EntityType="AutoCareModel.Mantenimiento" />
+          <EntitySet Name="AlertaSet" EntityType="AutoCareModel.Alerta" />
+          <AssociationSet Name="UsuarioVehiculo" Association="AutoCareModel.UsuarioVehiculo">
+            <End Role="Usuario" EntitySet="UsuarioSet" />
+            <End Role="Vehiculo" EntitySet="VehiculoSet" />
+          </AssociationSet>
+          <AssociationSet Name="VehiculoMantenimiento" Association="AutoCareModel.VehiculoMantenimiento">
+            <End Role="Vehiculo" EntitySet="VehiculoSet" />
+            <End Role="Mantenimiento" EntitySet="MantenimientoSet" />
+          </AssociationSet>
+          <AssociationSet Name="VehiculoAlerta" Association="AutoCareModel.VehiculoAlerta">
+            <End Role="Vehiculo" EntitySet="VehiculoSet" />
+            <End Role="Alerta" EntitySet="AlertaSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Vehiculo" Relationship="AutoCareModel.UsuarioVehiculo" FromRole="Usuario" ToRole="Vehiculo" />
+          <Property Name="Apellido" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca" Type="String" Nullable="false" />
+          <Property Name="Modelo" Type="String" Nullable="false" />
+          <Property Name="Año" Type="String" Nullable="false" />
+          <Property Name="Kilometraje" Type="Int32" Nullable="false" />
+          <Property Name="Imagen" Type="String" Nullable="true" />
+          <NavigationProperty Name="Usuario" Relationship="AutoCareModel.UsuarioVehiculo" FromRole="Vehiculo" ToRole="Usuario" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mantenimiento" Relationship="AutoCareModel.VehiculoMantenimiento" FromRole="Vehiculo" ToRole="Mantenimiento" />
+          <NavigationProperty Name="Alerta" Relationship="AutoCareModel.VehiculoAlerta" FromRole="Vehiculo" ToRole="Alerta" />
+          <Property Name="Observacion" Type="String" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Mantenimiento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoMantenimiento" Type="String" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Costo" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="Vehiculo" Relationship="AutoCareModel.VehiculoMantenimiento" FromRole="Mantenimiento" ToRole="Vehiculo" />
+          <Property Name="VehiculoId" Type="Int32" Nullable="false" />
+          <Property Name="Observacion" Type="String" Nullable="true" />
+          <Property Name="Taller" Type="String" Nullable="true" />
+          <Property Name="Horario" Type="String" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Alerta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoAlerta" Type="String" Nullable="false" />
+          <Property Name="FechaAlerta" Type="DateTime" Nullable="false" />
+          <Property Name="Kilometraje" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vehiculo" Relationship="AutoCareModel.VehiculoAlerta" FromRole="Alerta" ToRole="Vehiculo" />
+          <Property Name="VehiculoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UsuarioVehiculo">
+          <End Type="AutoCareModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="AutoCareModel.Vehiculo" Role="Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehiculo">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VehiculoMantenimiento">
+          <End Type="AutoCareModel.Vehiculo" Role="Vehiculo" Multiplicity="1" />
+          <End Type="AutoCareModel.Mantenimiento" Role="Mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mantenimiento">
+              <PropertyRef Name="VehiculoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VehiculoAlerta">
+          <End Type="AutoCareModel.Vehiculo" Role="Vehiculo" Multiplicity="1" />
+          <End Type="AutoCareModel.Alerta" Role="Alerta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Alerta">
+              <PropertyRef Name="VehiculoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AutoCareModelStoreContainer" CdmEntityContainer="AutoCareEntities">
+    <EntitySetMapping Name="UsuarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoCareModel.Usuario)">
+        <MappingFragment StoreEntitySet="UsuarioSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehiculoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoCareModel.Vehiculo)">
+        <MappingFragment StoreEntitySet="VehiculoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="Kilometraje" ColumnName="Kilometraje" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MantenimientoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoCareModel.Mantenimiento)">
+        <MappingFragment StoreEntitySet="MantenimientoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TipoMantenimiento" ColumnName="TipoMantenimiento" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="VehiculoId" ColumnName="VehiculoId" />
+          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+          <ScalarProperty Name="Taller" ColumnName="Taller" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlertaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoCareModel.Alerta)">
+        <MappingFragment StoreEntitySet="AlertaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TipoAlerta" ColumnName="TipoAlerta" />
+          <ScalarProperty Name="FechaAlerta" ColumnName="FechaAlerta" />
+          <ScalarProperty Name="Kilometraje" ColumnName="Kilometraje" />
+          <ScalarProperty Name="VehiculoId" ColumnName="VehiculoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

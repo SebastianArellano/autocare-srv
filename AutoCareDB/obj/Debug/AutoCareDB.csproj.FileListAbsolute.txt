@@ -1,0 +1,12 @@
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\bin\Debug\AutoCareDB.dll.config
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\bin\Debug\AutoCareDB.dll
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\bin\Debug\AutoCareDB.pdb
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\bin\Debug\EntityFramework.dll
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\bin\Debug\EntityFramework.xml
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\obj\Debug\AutoCareDB.csproj.CoreCompileInputs.cache
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\obj\Debug\AutoCareDB.csproj.CopyComplete
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\obj\Debug\AutoCareDB.dll
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\obj\Debug\AutoCareDB.pdb
+C:\Users\Sebas\source\repos\AutoCare\AutoCareDB\obj\Debug\AutoCareDB.csproj.AssemblyReference.cache
